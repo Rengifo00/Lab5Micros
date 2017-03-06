@@ -1,0 +1,185 @@
+*** EVALUATION ***
+PROGRAM "Lab5F.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC08
+Memory Model: SMALL
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.51 Build 14019, Jan 20 2014
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+main_asm.obj                            Model: SMALL,         Lang: Assembler
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0xE0BA (_Startup)
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.init                            297     R     0xE000     0xE128   ROM
+MY_ZEROPAGE                        2   R/W       0x60       0x61   Z_RAM
+.stack                            64   R/W      0x100      0x13F   RAM
+.vectSeg0_vect                     2     R     0xFFDA     0xFFDB   .vectSeg0
+.vectSeg1_vect                     2     R     0xFFFA     0xFFFB   .vectSeg1
+.vectSeg2_vect                     2     R     0xFFFE     0xFFFF   .vectSeg2
+
+Summary of section sizes per section type:
+READ_ONLY (R):         12F (dec:      303)
+READ_WRITE (R/W):       42 (dec:       66)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+     0xFFDA        0xE012   KEY_INT
+     0xFFFA        0xE000   IRQ_SWITCH
+     0xFFFE        0xE0BA   _Startup
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- main_asm.obj --
+- PROCEDURES:
+     IRQ_SWITCH                                E000       3       3       0   .init       
+     irq_wait                                  E003       B      11       0   .init       
+     TurnOff                                   E00E       2       2       0   .init       
+     irq_fin                                   E010       2       2       0   .init       
+     KEY_INT                                   E012       2       2       0   .init       
+     kbi_wait                                  E014      11      17       0   .init       
+     fila0                                     E025       D      13       0   .init       
+     f0c0                                      E032       6       6       0   .init       
+     f0c1                                      E038       6       6       0   .init       
+     f0c2                                      E03E       6       6       0   .init       
+     f0c3                                      E044       6       6       0   .init       
+     fila1                                     E04A       D      13       0   .init       
+     f1c0                                      E057       6       6       0   .init       
+     f1c1                                      E05D       6       6       0   .init       
+     f1c2                                      E063       6       6       0   .init       
+     f1c3                                      E069       6       6       0   .init       
+     fila2                                     E06F       D      13       0   .init       
+     f2c0                                      E07C       6       6       0   .init       
+     f2c1                                      E082       6       6       0   .init       
+     f2c2                                      E088       6       6       0   .init       
+     f2c3                                      E08E       6       6       0   .init       
+     fila3                                     E094       D      13       0   .init       
+     f3c0                                      E0A1       6       6       0   .init       
+     f3c1                                      E0A7       6       6       0   .init       
+     f3c2                                      E0AD       6       6       0   .init       
+     f3c3                                      E0B3       7       7       0   .init       
+     _Startup                                  E0BA      1A      26       0   .init       
+     main                                      E0BA       0       0       0   .init       
+     mainLoop                                  E0D4      24      36       0   .init       
+     configSalidas                             E0F8      1C      28       1   .init       
+     configIRQ                                 E114       6       6       1   .init       
+     configKBI                                 E11A       F      15       1   .init       
+- VARIABLES:
+     Fila                                        60       1       1       5   MY_ZEROPAGE 
+     Estado                                      61       1       1       4   MY_ZEROPAGE 
+- LABELS:
+     __SEG_END_SSTACK                           140       0       0       1               
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  main_asm.obj                                 2    297      0
+  other                                       64      6      0
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".init"
+  IRQ_SWITCH irq_wait TurnOff irq_fin KEY_INT kbi_wait fila0 f0c0 f0c1 f0c2 
+  f0c3 fila1 f1c0 f1c1 f1c2 f1c3 fila2 f2c0 f2c1 f2c2 f2c3 fila3 f3c0 f3c1 f3c2 
+  f3c3 main _Startup mainLoop configSalidas configIRQ configKBI 
+SECTION: "MY_ZEROPAGE"
+  Fila Estado 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     Fila                                        60       1       1       5   MY_ZEROPAGE 
+     Estado                                      61       1       1       4   MY_ZEROPAGE 
+     IRQ_SWITCH                                E000       3       3       0   .init       
+     irq_wait                                  E003       B      11       0   .init       
+     TurnOff                                   E00E       2       2       0   .init       
+     irq_fin                                   E010       2       2       0   .init       
+     KEY_INT                                   E012       2       2       0   .init       
+     kbi_wait                                  E014      11      17       0   .init       
+     fila0                                     E025       D      13       0   .init       
+     f0c0                                      E032       6       6       0   .init       
+     f0c1                                      E038       6       6       0   .init       
+     f0c2                                      E03E       6       6       0   .init       
+     f0c3                                      E044       6       6       0   .init       
+     fila1                                     E04A       D      13       0   .init       
+     f1c0                                      E057       6       6       0   .init       
+     f1c1                                      E05D       6       6       0   .init       
+     f1c2                                      E063       6       6       0   .init       
+     f1c3                                      E069       6       6       0   .init       
+     fila2                                     E06F       D      13       0   .init       
+     f2c0                                      E07C       6       6       0   .init       
+     f2c1                                      E082       6       6       0   .init       
+     f2c2                                      E088       6       6       0   .init       
+     f2c3                                      E08E       6       6       0   .init       
+     fila3                                     E094       D      13       0   .init       
+     f3c0                                      E0A1       6       6       0   .init       
+     f3c1                                      E0A7       6       6       0   .init       
+     f3c2                                      E0AD       6       6       0   .init       
+     f3c3                                      E0B3       7       7       0   .init       
+     main                                      E0BA       0       0       0   .init       
+     _Startup                                  E0BA      1A      26       0   .init       
+     mainLoop                                  E0D4      24      36       0   .init       
+     configSalidas                             E0F8      1C      28       1   .init       
+     configIRQ                                 E114       6       6       1   .init       
+     configKBI                                 E11A       F      15       1   .init       
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+irq_wait                  USES Estado 
+TurnOff                   USES Estado 
+_Startup                  USES __SEG_END_SSTACK configSalidas configIRQ 
+                                configKBI Estado Fila 
+mainLoop                  USES Fila 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |    
+ +- _Startup            
+    | 
+    +- configSalidas       
+    |    
+    +- configIRQ           
+    |    
+    +- configKBI           
+         
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 4
+Total size of all blocks to be downloaded: 303
+
