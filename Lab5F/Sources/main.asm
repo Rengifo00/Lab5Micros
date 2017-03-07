@@ -59,8 +59,11 @@ kbi_wait:   dbnza kbi_wait
 
             bset KBISC_KBACK,KBISC ;Limpiar la bandera de bit de interrupción por teclado
             
+            brset 0,Estado,start   ;Verificar que el teclado esté activado
+            rti
 
-			brclr 0,PTAD,fila0 ;Verificar cual de los cuatro kbi activó la interrupción, filas son entradas
+
+start:		brclr 0,PTAD,fila0 ;Verificar cual de los cuatro kbi activó la interrupción, filas son entradas
 			brclr 1,PTAD,fila1
 			brclr 2,PTAD,fila2
 			brclr 3,PTAD,fila3
@@ -151,6 +154,7 @@ main:
 _Startup:
             LDHX   #__SEG_END_SSTACK ; initialize the stack pointer
             TXS
+            sta   SOPT1       ;Desactivar watchdog
             jsr   configSalidas
             jsr   configIRQ	
             jsr   configKBI		
@@ -162,26 +166,34 @@ _Startup:
 
 mainLoop:
             
-            mov   #0,Fila
+            mov   #0,Fila     ;Verifica la fila cero del teclado
             bset  3,PTBD
             bclr  0,PTBD
+            lda   #80
+wait0:      dbnza wait0	
             
             
-            mov   #1,Fila
+            mov   #1,Fila     ;Verifica la fila uno del teclado
             bset  0,PTBD            
             bclr  1,PTBD
+            lda   #80
+wait1:      dbnza wait1	
             
-            mov   #2,Fila
+            
+            mov   #2,Fila     ;Verifica la fila dos del teclado
             bset  1,PTBD           
             bclr  2,PTBD
+            lda   #80
+wait2:      dbnza wait2	
             
-            mov   #3,Fila
+            mov   #3,Fila     ;Verifica la fila tres del teclado
 
             bset  2,PTBD            
             bclr  3,PTBD           
+            lda   #80
+wait3:      dbnza wait3	
             
 
-            feed_watchdog
             BRA    mainLoop
 
 ;************************************************
@@ -194,17 +206,22 @@ configSalidas:
             ;         ||------------Salida de bit de decenas
             ;         |-------------Entrada de IRQ
             mov   #%11101111,PTAD  ;Configurar estado inicial de los puertos PTAD, solo afectará a bit de decenas
-            mov   #%00101111,PTAPE ;Activar Pull-Up para las entradas
-            mov   #%00010000,PTASE ;Activar Slew-Rate para las salidas
-            mov   #%00010000,PTADS ;Activar High-Drive 
+            lda   #%00101111
+            sta   PTAPE ;Activar Pull-Up para las entradas
+            lda   #%00010000
+            sta   PTASE ;Activar Slew-Rate para las salidas
+            lda   #%00010000
+            sta   PTADS ;Activar High-Drive 
 ;Configurar PTBD
             
             mov   #%11111111,PTBDD ;Configurar entradas y salidas en PTBDD
             ;       |   |____-------Salidas de filas
             ;       |___------------Salidas de Display 
             mov   #%00001111,PTBD  ;Configurar estado inicial de los puertos PTBD, apagará display y mantendra salidas de filas
-            mov   #%11111111,PTASE ;Activar Slew-Rate para las salidas
-            mov   #%11111111,PTADS ;Activar High-Drive 
+            lda   #%11111111
+            sta   PTASE ;Activar Slew-Rate para las salidas
+            lda   #%11111111
+            sta   PTADS ;Activar High-Drive 
             
             rts               ;Terminar subrutina
 ;***************************************

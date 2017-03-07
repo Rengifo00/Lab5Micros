@@ -17,13 +17,13 @@ main_asm.obj                            Model: SMALL,         Lang: Assembler
 *********************************************************************************************
 STARTUP SECTION
 ---------------------------------------------------------------------------------------------
-Entry point: 0xE0BA (_Startup)
+Entry point: 0xE0BE (_Startup)
 
 *********************************************************************************************
 SECTION-ALLOCATION SECTION
 Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
-.init                            297     R     0xE000     0xE128   ROM
+.init                            324     R     0xE000     0xE143   ROM
 MY_ZEROPAGE                        2   R/W       0x60       0x61   Z_RAM
 .stack                            64   R/W      0x100      0x13F   RAM
 .vectSeg0_vect                     2     R     0xFFDA     0xFFDB   .vectSeg0
@@ -31,7 +31,7 @@ MY_ZEROPAGE                        2   R/W       0x60       0x61   Z_RAM
 .vectSeg2_vect                     2     R     0xFFFE     0xFFFF   .vectSeg2
 
 Summary of section sizes per section type:
-READ_ONLY (R):         12F (dec:      303)
+READ_ONLY (R):         14A (dec:      330)
 READ_WRITE (R/W):       42 (dec:       66)
 
 *********************************************************************************************
@@ -40,7 +40,7 @@ VECTOR-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
      0xFFDA        0xE012   KEY_INT
      0xFFFA        0xE000   IRQ_SWITCH
-     0xFFFE        0xE0BA   _Startup
+     0xFFFE        0xE0BE   _Startup
 
 *********************************************************************************************
 OBJECT-ALLOCATION SECTION
@@ -53,36 +53,41 @@ MODULE:                 -- main_asm.obj --
      TurnOff                                   E00E       2       2       0   .init       
      irq_fin                                   E010       2       2       0   .init       
      KEY_INT                                   E012       2       2       0   .init       
-     kbi_wait                                  E014      11      17       0   .init       
-     fila0                                     E025       D      13       0   .init       
-     f0c0                                      E032       6       6       0   .init       
-     f0c1                                      E038       6       6       0   .init       
-     f0c2                                      E03E       6       6       0   .init       
-     f0c3                                      E044       6       6       0   .init       
-     fila1                                     E04A       D      13       0   .init       
-     f1c0                                      E057       6       6       0   .init       
-     f1c1                                      E05D       6       6       0   .init       
-     f1c2                                      E063       6       6       0   .init       
-     f1c3                                      E069       6       6       0   .init       
-     fila2                                     E06F       D      13       0   .init       
-     f2c0                                      E07C       6       6       0   .init       
-     f2c1                                      E082       6       6       0   .init       
-     f2c2                                      E088       6       6       0   .init       
-     f2c3                                      E08E       6       6       0   .init       
-     fila3                                     E094       D      13       0   .init       
-     f3c0                                      E0A1       6       6       0   .init       
-     f3c1                                      E0A7       6       6       0   .init       
-     f3c2                                      E0AD       6       6       0   .init       
-     f3c3                                      E0B3       7       7       0   .init       
-     _Startup                                  E0BA      1A      26       0   .init       
-     main                                      E0BA       0       0       0   .init       
-     mainLoop                                  E0D4      24      36       0   .init       
-     configSalidas                             E0F8      1C      28       1   .init       
-     configIRQ                                 E114       6       6       1   .init       
-     configKBI                                 E11A       F      15       1   .init       
+     kbi_wait                                  E014       8       8       0   .init       
+     start                                     E01C       D      13       0   .init       
+     fila0                                     E029       D      13       0   .init       
+     f0c0                                      E036       6       6       0   .init       
+     f0c1                                      E03C       6       6       0   .init       
+     f0c2                                      E042       6       6       0   .init       
+     f0c3                                      E048       6       6       0   .init       
+     fila1                                     E04E       D      13       0   .init       
+     f1c0                                      E05B       6       6       0   .init       
+     f1c1                                      E061       6       6       0   .init       
+     f1c2                                      E067       6       6       0   .init       
+     f1c3                                      E06D       6       6       0   .init       
+     fila2                                     E073       D      13       0   .init       
+     f2c0                                      E080       6       6       0   .init       
+     f2c1                                      E086       6       6       0   .init       
+     f2c2                                      E08C       6       6       0   .init       
+     f2c3                                      E092       6       6       0   .init       
+     fila3                                     E098       D      13       0   .init       
+     f3c0                                      E0A5       6       6       0   .init       
+     f3c1                                      E0AB       6       6       0   .init       
+     f3c2                                      E0B1       6       6       0   .init       
+     f3c3                                      E0B7       7       7       0   .init       
+     _Startup                                  E0BE      1D      29       0   .init       
+     main                                      E0BE       0       0       0   .init       
+     mainLoop                                  E0DB       9       9       0   .init       
+     wait0                                     E0E4       B      11       0   .init       
+     wait1                                     E0EF       B      11       0   .init       
+     wait2                                     E0FA       B      11       0   .init       
+     wait3                                     E105       4       4       0   .init       
+     configSalidas                             E109      26      38       1   .init       
+     configIRQ                                 E12F       6       6       1   .init       
+     configKBI                                 E135       F      15       1   .init       
 - VARIABLES:
      Fila                                        60       1       1       5   MY_ZEROPAGE 
-     Estado                                      61       1       1       4   MY_ZEROPAGE 
+     Estado                                      61       1       1       5   MY_ZEROPAGE 
 - LABELS:
      __SEG_END_SSTACK                           140       0       0       1               
 
@@ -90,16 +95,17 @@ MODULE:                 -- main_asm.obj --
 MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
-  main_asm.obj                                 2    297      0
+  main_asm.obj                                 2    324      0
   other                                       64      6      0
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".init"
-  IRQ_SWITCH irq_wait TurnOff irq_fin KEY_INT kbi_wait fila0 f0c0 f0c1 f0c2 
-  f0c3 fila1 f1c0 f1c1 f1c2 f1c3 fila2 f2c0 f2c1 f2c2 f2c3 fila3 f3c0 f3c1 f3c2 
-  f3c3 main _Startup mainLoop configSalidas configIRQ configKBI 
+  IRQ_SWITCH irq_wait TurnOff irq_fin KEY_INT kbi_wait start fila0 f0c0 f0c1 
+  f0c2 f0c3 fila1 f1c0 f1c1 f1c2 f1c3 fila2 f2c0 f2c1 f2c2 f2c3 fila3 f3c0 f3c1 
+  f3c2 f3c3 main _Startup mainLoop wait0 wait1 wait2 wait3 configSalidas 
+  configIRQ configKBI 
 SECTION: "MY_ZEROPAGE"
   Fila Estado 
 
@@ -108,39 +114,44 @@ OBJECT LIST SORTED BY ADDRESS
      Name                                      Addr   hSize   dSize     Ref    Section   RLIB
 ---------------------------------------------------------------------------------------------
      Fila                                        60       1       1       5   MY_ZEROPAGE 
-     Estado                                      61       1       1       4   MY_ZEROPAGE 
+     Estado                                      61       1       1       5   MY_ZEROPAGE 
      IRQ_SWITCH                                E000       3       3       0   .init       
      irq_wait                                  E003       B      11       0   .init       
      TurnOff                                   E00E       2       2       0   .init       
      irq_fin                                   E010       2       2       0   .init       
      KEY_INT                                   E012       2       2       0   .init       
-     kbi_wait                                  E014      11      17       0   .init       
-     fila0                                     E025       D      13       0   .init       
-     f0c0                                      E032       6       6       0   .init       
-     f0c1                                      E038       6       6       0   .init       
-     f0c2                                      E03E       6       6       0   .init       
-     f0c3                                      E044       6       6       0   .init       
-     fila1                                     E04A       D      13       0   .init       
-     f1c0                                      E057       6       6       0   .init       
-     f1c1                                      E05D       6       6       0   .init       
-     f1c2                                      E063       6       6       0   .init       
-     f1c3                                      E069       6       6       0   .init       
-     fila2                                     E06F       D      13       0   .init       
-     f2c0                                      E07C       6       6       0   .init       
-     f2c1                                      E082       6       6       0   .init       
-     f2c2                                      E088       6       6       0   .init       
-     f2c3                                      E08E       6       6       0   .init       
-     fila3                                     E094       D      13       0   .init       
-     f3c0                                      E0A1       6       6       0   .init       
-     f3c1                                      E0A7       6       6       0   .init       
-     f3c2                                      E0AD       6       6       0   .init       
-     f3c3                                      E0B3       7       7       0   .init       
-     main                                      E0BA       0       0       0   .init       
-     _Startup                                  E0BA      1A      26       0   .init       
-     mainLoop                                  E0D4      24      36       0   .init       
-     configSalidas                             E0F8      1C      28       1   .init       
-     configIRQ                                 E114       6       6       1   .init       
-     configKBI                                 E11A       F      15       1   .init       
+     kbi_wait                                  E014       8       8       0   .init       
+     start                                     E01C       D      13       0   .init       
+     fila0                                     E029       D      13       0   .init       
+     f0c0                                      E036       6       6       0   .init       
+     f0c1                                      E03C       6       6       0   .init       
+     f0c2                                      E042       6       6       0   .init       
+     f0c3                                      E048       6       6       0   .init       
+     fila1                                     E04E       D      13       0   .init       
+     f1c0                                      E05B       6       6       0   .init       
+     f1c1                                      E061       6       6       0   .init       
+     f1c2                                      E067       6       6       0   .init       
+     f1c3                                      E06D       6       6       0   .init       
+     fila2                                     E073       D      13       0   .init       
+     f2c0                                      E080       6       6       0   .init       
+     f2c1                                      E086       6       6       0   .init       
+     f2c2                                      E08C       6       6       0   .init       
+     f2c3                                      E092       6       6       0   .init       
+     fila3                                     E098       D      13       0   .init       
+     f3c0                                      E0A5       6       6       0   .init       
+     f3c1                                      E0AB       6       6       0   .init       
+     f3c2                                      E0B1       6       6       0   .init       
+     f3c3                                      E0B7       7       7       0   .init       
+     main                                      E0BE       0       0       0   .init       
+     _Startup                                  E0BE      1D      29       0   .init       
+     mainLoop                                  E0DB       9       9       0   .init       
+     wait0                                     E0E4       B      11       0   .init       
+     wait1                                     E0EF       B      11       0   .init       
+     wait2                                     E0FA       B      11       0   .init       
+     wait3                                     E105       4       4       0   .init       
+     configSalidas                             E109      26      38       1   .init       
+     configIRQ                                 E12F       6       6       1   .init       
+     configKBI                                 E135       F      15       1   .init       
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
@@ -155,9 +166,13 @@ OBJECT-DEPENDENCIES SECTION
 ---------------------------------------------------------------------------------------------
 irq_wait                  USES Estado 
 TurnOff                   USES Estado 
+kbi_wait                  USES Estado 
 _Startup                  USES __SEG_END_SSTACK configSalidas configIRQ 
                                 configKBI Estado Fila 
 mainLoop                  USES Fila 
+wait0                     USES Fila 
+wait1                     USES Fila 
+wait2                     USES Fila 
 
 *********************************************************************************************
 DEPENDENCY TREE
@@ -181,5 +196,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 4
-Total size of all blocks to be downloaded: 303
+Total size of all blocks to be downloaded: 330
 
