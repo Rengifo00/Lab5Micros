@@ -23,7 +23,7 @@ Entry point: 0xE0BE (_Startup)
 SECTION-ALLOCATION SECTION
 Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
-.init                            324     R     0xE000     0xE143   ROM
+.init                            319     R     0xE000     0xE13E   ROM
 MY_ZEROPAGE                        2   R/W       0x60       0x61   Z_RAM
 .stack                            64   R/W      0x100      0x13F   RAM
 .vectSeg0_vect                     2     R     0xFFDA     0xFFDB   .vectSeg0
@@ -31,7 +31,7 @@ MY_ZEROPAGE                        2   R/W       0x60       0x61   Z_RAM
 .vectSeg2_vect                     2     R     0xFFFE     0xFFFF   .vectSeg2
 
 Summary of section sizes per section type:
-READ_ONLY (R):         14A (dec:      330)
+READ_ONLY (R):         145 (dec:      325)
 READ_WRITE (R/W):       42 (dec:       66)
 
 *********************************************************************************************
@@ -75,16 +75,16 @@ MODULE:                 -- main_asm.obj --
      f3c1                                      E0AB       6       6       0   .init       
      f3c2                                      E0B1       6       6       0   .init       
      f3c3                                      E0B7       7       7       0   .init       
-     _Startup                                  E0BE      1D      29       0   .init       
+     _Startup                                  E0BE      18      24       0   .init       
      main                                      E0BE       0       0       0   .init       
-     mainLoop                                  E0DB       9       9       0   .init       
-     wait0                                     E0E4       B      11       0   .init       
-     wait1                                     E0EF       B      11       0   .init       
-     wait2                                     E0FA       B      11       0   .init       
-     wait3                                     E105       4       4       0   .init       
-     configSalidas                             E109      26      38       1   .init       
-     configIRQ                                 E12F       6       6       1   .init       
-     configKBI                                 E135       F      15       1   .init       
+     mainLoop                                  E0D6       9       9       0   .init       
+     wait0                                     E0DF       B      11       0   .init       
+     wait1                                     E0EA       B      11       0   .init       
+     wait2                                     E0F5       B      11       0   .init       
+     wait3                                     E100       4       4       0   .init       
+     configSalidas                             E104      26      38       1   .init       
+     configIRQ                                 E12A       6       6       1   .init       
+     configKBI                                 E130       F      15       1   .init       
 - VARIABLES:
      Fila                                        60       1       1       5   MY_ZEROPAGE 
      Estado                                      61       1       1       5   MY_ZEROPAGE 
@@ -95,7 +95,7 @@ MODULE:                 -- main_asm.obj --
 MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
-  main_asm.obj                                 2    324      0
+  main_asm.obj                                 2    319      0
   other                                       64      6      0
 
 *********************************************************************************************
@@ -143,15 +143,15 @@ OBJECT LIST SORTED BY ADDRESS
      f3c2                                      E0B1       6       6       0   .init       
      f3c3                                      E0B7       7       7       0   .init       
      main                                      E0BE       0       0       0   .init       
-     _Startup                                  E0BE      1D      29       0   .init       
-     mainLoop                                  E0DB       9       9       0   .init       
-     wait0                                     E0E4       B      11       0   .init       
-     wait1                                     E0EF       B      11       0   .init       
-     wait2                                     E0FA       B      11       0   .init       
-     wait3                                     E105       4       4       0   .init       
-     configSalidas                             E109      26      38       1   .init       
-     configIRQ                                 E12F       6       6       1   .init       
-     configKBI                                 E135       F      15       1   .init       
+     _Startup                                  E0BE      18      24       0   .init       
+     mainLoop                                  E0D6       9       9       0   .init       
+     wait0                                     E0DF       B      11       0   .init       
+     wait1                                     E0EA       B      11       0   .init       
+     wait2                                     E0F5       B      11       0   .init       
+     wait3                                     E100       4       4       0   .init       
+     configSalidas                             E104      26      38       1   .init       
+     configIRQ                                 E12A       6       6       1   .init       
+     configKBI                                 E130       F      15       1   .init       
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
@@ -196,5 +196,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 4
-Total size of all blocks to be downloaded: 330
+Total size of all blocks to be downloaded: 325
 

@@ -2088,8 +2088,8 @@ fila3:
 f3c0:       mov   #%01001110,PTBD ;Asignar el valor cuatro a la salida de unidades, dejar la columna cero en bajo.
             bset  4,PTAD      ;Indicador de decimales en uno.
             rti
-f3c1:       mov   #%00001101,PTBD ;Asignar el valor cero a la salida de unidades, dejar la columna uno en bajo.
-            bclr  4,PTAD      ;Indicador de decimales en cero.
+f3c1:       mov   #%01101101,PTBD ;Asignar el valor seis a la salida de unidades, dejar la columna uno en bajo.
+            bset  4,PTAD      ;Indicador de decimales en uno.
             rti            
 f3c2:       mov   #%01011011,PTBD ;Asignar el valor cinco a la salida de unidades, dejar la columna dos en bajo.
             bset  4,PTAD      ;Indicador de decimales en uno.
@@ -2109,14 +2109,13 @@ main:
 _Startup:
             LDHX   #__SEG_END_SSTACK ; initialize the stack pointer
             TXS
+            clra 
             sta   SOPT1       ;Desactivar watchdog
             jsr   configSalidas
             jsr   configIRQ	
             jsr   configKBI		
             mov   #1,Estado
             mov   #0,Fila
-            mov   #%11101111,PTAD  ;Configurar estado inicial de los puertos PTAD, solo afectará a bit de decenas
-            mov   #%00001111,PTBD  ;Configurar estado inicial de los puertos PTBD, apagará display y mantendra salidas de filas
 			CLI			; enable interrupts
 
 mainLoop:
